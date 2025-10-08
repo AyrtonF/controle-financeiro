@@ -8,15 +8,18 @@
 
 ## 📱 Sobre o Projeto
 
-Aplicativo móvel de controle financeiro desenvolvido em **React Native com Expo** e **TypeScript**. O app permite gerenciar receitas e despesas de forma intuitiva, com interface moderna e navegação fluida.
+Aplicativo móvel de controle financeiro completo desenvolvido em **React Native com Expo** e **TypeScript**. O app oferece uma experiência completa de gerenciamento financeiro pessoal com funcionalidades avançadas de filtragem, notificações e interface moderna.
 
-### ✨ Funcionalidades
+### ✨ Funcionalidades Implementadas
 
-- 🏠 **Dashboard Financeiro**: Saldo atual, receitas e despesas
-- 📝 **Cadastro de Transações**: Formulário com validação em tempo real
-- 📊 **Lista de Transações**: Busca, filtros e remoção
-- 🎨 **Interface Responsiva**: Design moderno e adaptável
-- 🚀 **Navegação Intuitiva**: Abas com React Navigation
+- 🏠 **Dashboard Inteligente**: Saldo atual, receitas e despesas com botões funcionais
+- 📝 **Cadastro Avançado**: Formulário com validação e notificações de sucesso
+- 📊 **Lista Completa**: Busca, filtros avançados, ordenação e remoção segura
+- � **Sistema de Notificações**: Toast notifications para feedback do usuário
+- 🎯 **Filtros Inteligentes**: Por tipo, categoria e valor (maior/menor)
+- 🗑️ **Remoção Segura**: Confirmação antes de excluir transações
+- 🎨 **Interface Moderna**: Design responsivo e animações suaves
+- 🚀 **Navegação Fluida**: Tabs com React Navigation e passagem de parâmetros
 
 ## 🛠️ Stack Tecnológico
 
@@ -31,10 +34,22 @@ Aplicativo móvel de controle financeiro desenvolvido em **React Native com Expo
 
 ```
 src/
-├── components/           # Componentes reutilizáveis
-├── context/             # Gerenciamento de estado global
-├── screens/             # Telas do aplicativo
-└── styles/              # Estilos e design system
+├── components/          # Componentes reutilizáveis
+│   └── Toast.tsx       # Sistema de notificações
+├── context/            # Gerenciamento de estado global
+│   └── FinanceContext.tsx  # Context API para transações
+├── hooks/              # Custom hooks
+│   └── useToast.ts     # Hook para notificações
+├── screens/            # Telas do aplicativo
+│   ├── HomeScreen.tsx      # Dashboard principal
+│   ├── FormScreen.tsx      # Formulário de transações
+│   └── ListScreen.tsx      # Lista com filtros avançados
+└── types/              # Definições TypeScript
+    └── index.ts        # Interfaces e tipos
+docs/                   # Documentação completa
+├── GUIA_APRESENTACAO.md    # Guia para apresentação
+├── DOCUMENTACAO_EQUIPE.md  # Documentação da equipe
+└── RELATORIO_TECNICO.md    # Relatório técnico detalhado
 ```
 
 ## 🚀 Como Executar
@@ -62,20 +77,25 @@ npm install -g @expo/cli
 ### Execução
 
 **Desenvolvimento Web (Recomendado)**
+
 ```bash
 npm run web
 # ou
 expo start --web
 ```
+
 Abre automaticamente em `http://localhost:19006`
 
 **Dispositivo Móvel**
+
 ```bash
 npm start
 ```
+
 Escaneie o QR Code com o app **Expo Go**
 
 **Emulador**
+
 ```bash
 npm run android  # Android Studio
 npm run ios      # Xcode (macOS)
@@ -83,19 +103,42 @@ npm run ios      # Xcode (macOS)
 
 ## 🎯 Funcionalidades Detalhadas
 
-### 🏠 Tela Principal
-- Saldo total colorido (verde/vermelho)
-- Cards de receitas e despesas
-- Resumo de transações
-- Botões de ação rápida
+### 🏠 Dashboard Principal (HomeScreen)
 
-### 📝 Formulário
-- Validação em tempo real
-- Seleção de tipo (receita/despesa)
-- Categorias predefinidas
-- Formatação monetária
+- 💰 Saldo total dinâmico (verde/vermelho)
+- 📈 Cards de receitas e despesas
+- 📊 Resumo completo de transações
+- 🎯 **Botões funcionais** que navegam para formulário pré-configurado
+- 🚀 Integração com navegação e parâmetros
+
+### 📝 Formulário Inteligente (FormScreen)
+
+- ✅ Validação em tempo real
+- 🎯 Tipo pré-selecionado via navegação
+- 📂 Categorias predefinidas por contexto
+- 💱 Formatação monetária automática
+- 🔔 **Notificações de sucesso/erro**
+- 🎨 Interface responsiva e intuitiva
+
+### 📊 Lista Avançada (ListScreen)
+
+- 🔍 **Busca em tempo real** por descrição
+- 🎛️ **Filtros múltiplos**: tipo, categoria, valor
+- 📊 **Ordenação inteligente**: data, valor (crescente/decrescente), descrição
+- 🗑️ **Remoção segura** com confirmação
+- 🔔 **Feedback visual** com toast notifications
+- 📱 Interface otimizada para mobile e web
+
+### 🔔 Sistema de Notificações
+
+- ✅ **Toast personalizados** (sucesso, erro, aviso, info)
+- 🎨 **Animações suaves** de entrada e saída
+- ⏱️ **Auto-dismiss** configurável
+- 👆 **Toque para dispensar**
+- 🎯 **Ícones contextuais** para cada tipo
 
 ### 📊 Lista de Transações
+
 - Busca por descrição e categoria
 - Remoção com confirmação
 - Interface otimizada
@@ -104,12 +147,14 @@ npm run ios      # Xcode (macOS)
 ## 🎨 Design System
 
 ### Cores
+
 - **Primary**: #007AFF
 - **Success**: #28A745 (receitas)
 - **Danger**: #DC3545 (despesas)
 - **Gray**: #8E8E93, #F2F2F7
 
 ### Tipografia
+
 - Fonte do sistema (iOS/Android)
 - Hierarquia consistente
 - Tamanhos responsivos
@@ -146,6 +191,7 @@ npm run ios      # Xcode (macOS)
 ## 📋 Documentação Técnica
 
 Para análise técnica detalhada, consulte:
+
 - **[📋 Relatório Técnico](docs/RELATORIO_TECNICO.md)** - Arquitetura, implementação e análises
 
 ## 👥 Desenvolvimento

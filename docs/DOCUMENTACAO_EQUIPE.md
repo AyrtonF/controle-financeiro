@@ -1,52 +1,55 @@
-# 👥 Documentação Técnica para Equipe - Controle Financeiro
+# 👥 Documentação Técnica Completa - Controle Financeiro
 
-> **Objetivo:** Este docum**Para apresentar:** "O Babel transpila nosso código moderno JavaScript para ser compatível com React Native."
+> **Versão Atual:** 2.0 com Sistema de Notificações e Filtros Avançados  
+> **Objetivo:** Explicação detalhada de cada arquivo e funcionalidade para toda a equipe poder entender, manter e apresentar o código com confiança técnica.
 
-### 📄 `webpack.config.js`
+## 📋 Índice Rápido
 
-**O que faz:** Configurações do Webpack para suporte web.
+- [🏗️ Arquitetura Geral](#arquitetura)
+- [📱 Componentes e Telas](#componentes)
+- [🌍 Gerenciamento de Estado](#estado)
+- [🎣 Custom Hooks](#hooks)
+- [📁 Estrutura Detalhada](#estrutura)
+- [🔧 Configurações](#configuracoes)
+- [⚡ Performance](#performance)
 
-```javascript
-const createExpoWebpackConfigAsync = require("@expo/webpack-config");
+---
 
-module.exports = async function (env, argv) {
-  const config = await createExpoWebpackConfigAsync(
-    {
-      ...env,
-      babel: {
-        dangerouslyAddModulePathsToTranspile: ["@expo/vector-icons"],
-      },
-    },
-    argv
-  );
-  return config;
-};
+## 🏗️ Arquitetura Geral {#arquitetura}
+
+### Stack Tecnológico Atual
+
+```
+📱 React Native 0.72.10 + Expo ~49.0.15
+   ↓
+🔷 TypeScript (tipagem completa)
+   ↓
+🧭 React Navigation 6.x (Tab + Stack Navigation)
+   ↓
+🌍 Context API + Custom Hooks (Estado Global)
+   ↓
+🎨 Styled Components (Design System)
+   ↓
+🔔 Sistema de Notificações (Toast Animados)
+   ↓
+🎯 Filtros Avançados (Multi-critério + Ordenação)
 ```
 
-**Para apresentar:** "O Webpack permite executar o app React Native no navegador, facilitando desenvolvimento e apresentações."
+### Fluxo de Dados
 
----o explica o funcionamento detalhado de cada arquivo do projeto para que toda a equipe possa entender, manter e apresentar o código com confiança.#### 4. **Estatísticas Simplificadas**
-
-```javascript
-// Versão atual mostra resumo básico
-<Text>Total de transações: {transactions.length}</Text>;
-{
-  transactions.length > 0 && (
-    <Text>Última transação: {transactions[0]?.description}</Text>
-  );
-}
+```
+FinanceContext (Fonte da Verdade)
+    ↓
+useToast Hook (Notificações)
+    ↓
+Screens (HomeScreen, FormScreen, ListScreen)
+    ↓
+Toast Component (Feedback Visual)
 ```
 
-**Para apresentar:**
+---
 
-- "A Home é como um 'dashboard bancário' - mostra tudo importante de uma vez"
-- "O saldo muda de cor: verde se positivo, vermel#### 5. Explicar Código (5 min)
-
-- "Context API gerencia estado global"
-- "FlatList otimizada suporta milhares de itens"
-- "Validação robusta em todos os campos"
-- "Design system consistente em todo o app"
-- "Suporte web com React Native Web e Webpack"n#### 6. Aspectos Técnicos (3 min)
+## 📱 Componentes e Telas Detalhadas {#componentes}
 
 - "Responsivo para diferentes tamanhos de tela"
 - "Componentes reutilizáveis economizam código"

@@ -12,6 +12,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useFinance } from "../context/FinanceContext";
+import Toast from "../components/Toast";
+import { useToast } from "../hooks/useToast";
 
 const CATEGORIES = {
   income: ["Salário", "Freelance", "Investimentos", "Vendas", "Outros"],
@@ -22,6 +24,7 @@ export default function FormScreen() {
   const navigation = useNavigation();
   const route = useRoute();
   const { addTransaction } = useFinance();
+  const { toastState, showSuccess, showError, hideToast } = useToast();
 
   const preselectedType = (route.params as any)?.preselectedType || "expense";
 
@@ -55,27 +58,39 @@ export default function FormScreen() {
         category,
       });
 
+      // Limpar formulário
+      const clearForm = () => {
+        setAmount("");
+        setDescription("");
+        setCategory("");
+      };
+
+      // Mostrar notificação de sucesso
+      const transactionTypeName = type === "income" ? "receita" : "despesa";
+      showSuccess(
+        `${
+          transactionTypeName.charAt(0).toUpperCase() +
+          transactionTypeName.slice(1)
+        } adicionada com sucesso!`
+      );
+
       Alert.alert("Sucesso", "Transação adicionada com sucesso!", [
         {
           text: "Ver Lista",
           onPress: () => {
-            setAmount("");
-            setDescription("");
-            setCategory("");
+            clearForm();
             (navigation as any).navigate("Transações");
           },
         },
         {
           text: "Nova Transação",
           onPress: () => {
-            setAmount("");
-            setDescription("");
-            setCategory("");
+            clearForm();
           },
         },
       ]);
     } catch (error) {
-      Alert.alert("Erro", "Erro ao salvar a transação. Tente novamente.");
+      showError("Erro ao salvar a transação. Tente novamente.");
     }
   };
 
@@ -209,6 +224,14 @@ export default function FormScreen() {
           <Text style={styles.saveButtonText}>Salvar Transação</Text>
         </TouchableOpacity>
       </ScrollView>
+
+      {/* Toast de notificação */}
+      <Toast
+        visible={toastState.visible}
+        message={toastState.message}
+        type={toastState.type}
+        onHide={hideToast}
+      />
     </SafeAreaView>
   );
 }

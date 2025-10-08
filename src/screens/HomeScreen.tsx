@@ -8,11 +8,17 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import { useFinance } from "../context/FinanceContext";
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const { transactions, getBalance, getTotalIncome, getTotalExpenses } =
     useFinance();
+
+  const handleNavigateToForm = (preselectedType: "income" | "expense") => {
+    (navigation as any).navigate("Adicionar", { preselectedType });
+  };
   const formatCurrency = (value: number): string => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
@@ -75,6 +81,8 @@ export default function HomeScreen() {
           <View style={styles.actionsGrid}>
             <TouchableOpacity
               style={[styles.actionButton, { backgroundColor: "#28A745" }]}
+              onPress={() => handleNavigateToForm("income")}
+              activeOpacity={0.8}
             >
               <Ionicons name="add-circle" size={32} color="#ffffff" />
               <Text style={styles.actionButtonText}>Nova{"\n"}Receita</Text>
@@ -82,6 +90,8 @@ export default function HomeScreen() {
 
             <TouchableOpacity
               style={[styles.actionButton, { backgroundColor: "#DC3545" }]}
+              onPress={() => handleNavigateToForm("expense")}
+              activeOpacity={0.8}
             >
               <Ionicons name="remove-circle" size={32} color="#ffffff" />
               <Text style={styles.actionButtonText}>Nova{"\n"}Despesa</Text>

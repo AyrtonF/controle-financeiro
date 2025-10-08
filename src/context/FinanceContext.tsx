@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export interface Transaction {
   id: string;
@@ -62,17 +63,28 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({
   const addTransaction = (transaction: Omit<Transaction, "id" | "date">) => {
     const newTransaction: Transaction = {
       ...transaction,
-      id: Date.now().toString(),
+      id: uuidv4(),
       date: new Date().toISOString(),
     };
-
     setTransactions((prev) => [newTransaction, ...prev]);
   };
 
   const removeTransaction = (id: string) => {
-    setTransactions((prev) =>
-      prev.filter((transaction) => transaction.id !== id)
-    );
+    console.log("🔥 REMOVENDO TRANSAÇÃO - ID:", id);
+    console.log("🔥 Total de transações antes:", transactions.length);
+
+    setTransactions((prev) => {
+      const filtered = prev.filter((transaction) => {
+        const shouldKeep = transaction.id !== id;
+        if (!shouldKeep) {
+          console.log("🗑️ Removendo transação:", transaction.description);
+        }
+        return shouldKeep;
+      });
+
+      console.log("🔥 Total de transações depois:", filtered.length);
+      return filtered;
+    });
   };
 
   const getTotalIncome = (): number => {
